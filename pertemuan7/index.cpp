@@ -11,10 +11,21 @@ int main(){
   */
 
   //1
+  int loop, i, num;
+  float sum = 0, avr;
 
+  cout<<"Berapa kali anda akan menjumlahkan?\n";
+  cin>>loop;
+
+  for(i = 0; i<loop; i++){
+    cout<<"angka ke-"<<i+1<<" :";
+    cin>>num;
+    sum += num;
+  }
+  cout<<"total penjumlahan dari angka yang anda masukkan adalah :"<<sum<<endl;
+  cout<<"rata-rata dari angka yang anda inputkan adalah" << sum/loop << endl;
 
   //  2
-  int i;
   for(i = 8; i>0; i--){
     for (int j = 1; j<=i; j++){
       cout<<"*";
