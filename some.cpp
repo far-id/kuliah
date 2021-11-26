@@ -3,11 +3,8 @@ using namespace std;
 
 
 int main(){
-  for(int i = 8; i>0; i--){
-    for(int k= 1; k<=i; k++){
-      cout<<"*";
-    }
-    cout<<endl;
+  for(int i = 1; i<4; i++){
+    cout<<i;
   }
   return 0;
 }

@@ -10,8 +10,8 @@ int main(){
   \ NIM   : 2103015048
   \ Kelas : 1B
   */
-  int question, loop, i, num, sum = 0;
-  float avr = 0;
+  int question, loop, num, i;
+  float sum = 0;
   bool condition = true;
   string repeat;
 
@@ -44,10 +44,9 @@ int main(){
           cout << "angka ke-" << i + 1 << " :";
           cin >> num;
           sum += num;
-          avr += num;
         }
         cout << "total penjumlahan dari angka yang anda masukkan adalah :" << sum << endl;
-        cout << "rata-rata dari angka yang anda inputkan adalah " << sum / loop <<" : "<< avr / loop<< endl;
+        cout << "rata-rata dari angka yang anda inputkan adalah " << sum / loop << endl;
         break;
 
       case 2:
