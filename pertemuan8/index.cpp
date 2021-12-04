@@ -71,8 +71,11 @@ int main()
 
     case 3:
       //  3
-      cout<<"Jika anda menginputkan karakter yang mengandung 'a' maka kebenarannya adalah 1 (true)\n";
-      cout<<"Inputkan karakter disini : ";
+      /* jika diinputkan lebih dari 1 karakter maka program akan membaca karakter pertama, 
+        mengembalikan kebenaran lalu program akan terhenti 
+        karena tipe data yang menampung inputan adalah char
+      */
+      cout<<"Inputkan 1 karakter disini : "; 
       cin >> masuk;
       cout << "Kebenarannya adalah "<< ToF(masuk) << endl;
       break;
