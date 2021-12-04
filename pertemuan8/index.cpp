@@ -42,9 +42,9 @@ int main()
   cout << "Kelas\t: 1B\n\n";
 
   cout << "\t\tDaftar Soal\n";
-  cout << "1. Buatlah program computer dengan bahasa C++ untuk menulis prosedur untuk menghitung jumlah N buah bilangan genap pertama(bilangan genap dimulai dari 0) .Prosedur menerima(parameter) masukan N dan memberikan(parameter) luaran jumlah N buah bilangan genap pertama tersebut !\n ";
-  cout<< "2. Buatlah program computer dengan bahasa C++ untuk membuat urutan bilangan Fibonacci mulai dari 3 sampai dengan 15, dengan metode rekursif !\n ";
-  cout<< "3. Buatlah program computer dengan bahasa C++ dengan menggunakan fungsi yang akan memberikan nilai true jika karakter yang diterimanya adalah huruf ‘a’ dan false jika tidak.\n ";
+  cout << "1. Buatlah program computer dengan bahasa C++ untuk menulis prosedur untuk menghitung jumlah N buah bilangan genap pertama(bilangan genap dimulai dari 0) .Prosedur menerima(parameter) masukan N dan memberikan(parameter) luaran jumlah N buah bilangan genap pertama tersebut !\n";
+  cout<< "2. Buatlah program computer dengan bahasa C++ untuk membuat urutan bilangan Fibonacci mulai dari 3 sampai dengan 15, dengan metode rekursif !\n";
+  cout<< "3. Buatlah program computer dengan bahasa C++ dengan menggunakan fungsi yang akan memberikan nilai true jika karakter yang diterimanya adalah huruf 'a' dan false jika tidak.\n";
 
   while (condition)
   {
@@ -71,14 +71,17 @@ int main()
 
     case 3:
       //  3
+      cout<<"Jika anda menginputkan karakter yang mengandung 'a' maka kebenarannya adalah 1 (true)\n";
+      cout<<"Inputkan karakter disini : ";
       cin >> masuk;
-      cout << ToF(masuk) << endl;
+      cout << "Kebenarannya adalah "<< ToF(masuk) << endl;
       break;
+
     default:
       cout << "Nomor soal yang anda masukkan tidak ada\n";
       break;
     }
-    cout << "Cek soal lainnya? (y/n) :";
+    cout << "\nCek soal lainnya? (y/n) :";
     cin >> repeat;
     transform(repeat.begin(), repeat.end(), repeat.begin(), ::tolower);
     repeat == "ya" || repeat == "iya" || repeat == "y" || repeat == "ulang" || repeat == "yes" ? condition = true : condition = false;
