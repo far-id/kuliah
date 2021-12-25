@@ -165,7 +165,6 @@ int main(){
         {
           found = true;
           cout<<search<<" ditemukan pada elemen ke-"<<i+1<< " atau array2["<<i<<"]\n";
-          break;
         }
       }
       if (!found)
