@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 using namespace std;
 
 void sumArray(int array1[50], int array2[50]){
@@ -32,6 +33,18 @@ void multiplyingArray(int array1[50], int array2[50])
   cout << "]\n";
 }
 
+int inputArray()
+{
+  int x = 0;
+  while (!(cin >> x))
+  {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Input bukan integer. coba lagi : ";
+  }
+  return x;
+}
+
 int main(){
   int array1[50] = {0}, array2[50] = {0}, max, location = 0, sum[50], mult[50], search, menu, pass = 0;
   bool con = true, found = false;
@@ -46,7 +59,7 @@ int main(){
   cout<<"7. Menghitungperkalian array1 dan array2\n";
   cout<<"8. Keluar\n\n";
   cout<<"Pilih menu yang ingin dijalankann (1..8): ";
-  cin>>menu;
+  menu = inputArray();
 
   while (con)
   {
@@ -59,7 +72,7 @@ int main(){
       for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); i++)
       {
         cout << "elemen ke-" << i+1 << " : ";
-        cin >> array1[i];
+        array1[i] = inputArray();
       }
       if (pass!= 0)
       {
@@ -74,7 +87,7 @@ int main(){
       for (int i = 0; i < sizeof(array2) / sizeof(array2[0]); i++)
       {
         cout << "elemen ke-" << i+1 << " : ";
-        cin >> array2[i];
+        array2[i] = inputArray();
       }
 
       if (pass != 0)
@@ -102,13 +115,13 @@ int main(){
       cout<<"array1[";
       for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); i++)
       {
-        cout<<"\""<<array1[i]<<"\", ";
+        cout<<array1[i]<<", ";
       }
       cout<<"]\n";
       cout<<"array2[";
       for (int i = 0; i < sizeof(array2) / sizeof(array2[0]); i++)
       {
-        cout<<"\""<<array2[i]<<"\", ";
+        cout<<array2[i]<<", ";
       }
       cout<<"]\n";
       pass = 0;
@@ -145,7 +158,7 @@ int main(){
         break;
       }
       cout<<"Angka yang anda cari : ";
-      cin>>search;
+      search = inputArray();
       for (int i = 0; i < sizeof(array2) / sizeof(array2[0]); i++)
       {
         if (array2[i] == search)
@@ -208,13 +221,14 @@ int main(){
       pass = 1;
       break;
     default:
+      cout<<"Menu yang adna pilih tidak ada";
       break;
     }
 
     if (pass == 0)
     {
       cout << "\nPilih menu lainnya (1..8):";
-      cin >> menu;
+      menu = inputArray();
     }
     
   }
