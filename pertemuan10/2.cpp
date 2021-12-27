@@ -1,9 +1,21 @@
 #include <iostream>
+#include <limits>
 using namespace std;
+
+int inputInt()
+{
+  int x = 0;
+  while (!(cin >> x))
+  {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Input bukan integer. coba lagi : ";
+  }
+  return x;
+}
 
 void inputMatrix(int matrix[4][4], string con)
 {
-  int num;
   for (int i = 0; i < 4; i++)
   {
     for (int j = 0; j < 4; j++)
@@ -11,14 +23,14 @@ void inputMatrix(int matrix[4][4], string con)
       if (con == "matrix1")
       {
         printf("inputkan angka untuk matrix 1 [%d][%d] :  ", i, j);
-        cin >> num;
-        matrix[i][j] = num;
+        
+        matrix[i][j] = inputInt();
       }
       else if (con == "matrix2")
       {
-        printf("inputkan angka untuk matrix 2 [%d][%d]", i, j);
-        cin >> num;
-        matrix[i][j] = num;
+        printf("inputkan angka untuk matrix 2 [%d][%d] :  ", i, j);
+        
+        matrix[i][j] = inputInt();
       }
     }
   }
