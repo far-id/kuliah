@@ -8,9 +8,7 @@
     "vector": "cpp",
     "xutility": "cpp",
     "xlocale": "cpp",
-    "algorithm": "cpp",
-    "limits": "cpp",
-    "ios": "cpp"
+    "algorithm": "cpp"
   },
   "peacock.color": "#404088",
   "workbench.colorCustomizations": {

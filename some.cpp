@@ -1,33 +1,14 @@
 #include <iostream>
-#include <limits>
+#include <string>
 using namespace std;
-
-int inputArray(int i){
-  int x = 0;
-  while (!(cin >> x))
-  {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << "Invalid input.  array[" << i << "] : ";
-  }
-  return x;
-}
-
 int main()
 {
-  int array[3];
-  for (int i = 0; i < 3; i++)
+  string negara[5][2] = {{"Indonesia", "Jakarta"}, {"Inggris", "London"}, {"Australia", "Wina"}, {"Francis", "Paris"}, {"Jepang", "Tokyo"}};
+  for (int i = 0; i < sizeof(negara) / sizeof(negara[0]); i++)
   {
-    cout << "array["<<i<<"] :";
-    
-    array[i] = inputArray(i);
+    for (int j = 0; j < sizeof(negara[0]) / sizeof(negara[0][0]); j++)
+    {
+      cout << negara[i][j];
+    }
   }
-
-  cout<<"array[";
-  for (int i = 0; i < 3; i++)
-  {
-    cout<<array[i]<<", ";
-  }
-  cout<<"]";
-  
 }
