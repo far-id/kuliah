@@ -29,7 +29,6 @@ int main()
   }
 
   setTable();
-  getch();
   return 0;
 }
 void setTable()
