@@ -10,7 +10,7 @@ void inputMatrix(int matrix[4][4], string con)
     {
       if (con == "matrix1")
       {
-        printf("inputkan angka untuk matrix 1 [%d][%d]", i, j);
+        printf("inputkan angka untuk matrix 1 [%d][%d] :  ", i, j);
         cin >> num;
         matrix[i][j] = num;
       }
