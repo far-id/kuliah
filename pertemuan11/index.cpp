@@ -42,6 +42,7 @@ int main()
   int data1[6], j, k, i, temp, iBiggest, iLast = 5;
   int data2[6] = {0, 12, 100, 5, 70, 3};
 
+  // nomor 1
   for (int i = 0; i < sizeof(data1) / sizeof(data1[0]); i++)
   {
     cout<<"Nilai element ke-"<<i<<" : ";
@@ -69,6 +70,7 @@ int main()
   cout << "\n Data1 setelah diurutkan ascending\n | ";
   showArray(data1);
 
+  // nomor 2
   cout<<"\n\n Data2\n | ";
   showArray(data2);
 
