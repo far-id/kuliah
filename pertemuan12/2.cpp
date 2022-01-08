@@ -84,7 +84,7 @@ void insertValueToArray(int size){
   showArray(data, size);
 
   cout<<"\n\n Data yang ingin anda cari : ";
-  cin>>search;
+  search = inputInt();
 
   binarysearch(data, size, search);
 }
@@ -93,7 +93,7 @@ int main()
   int length;
 
   cout<<"Berapa jumlah data yang ingin anda masukkan? : ";
-  cin>>length;
+  length = inputInt();
 
   insertValueToArray(length);
   
