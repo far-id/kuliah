@@ -13,13 +13,14 @@ int main(){
     getline (cin, mhs[i]);
   }
   
-  cout<<"cari : ";
+  cout<<"\ncari : ";
   getline(cin, search);
+  cout<<endl;
 
   cout<<"Daftar Mahasiswa\n";
   for (int i = 0; i <= size; i++)
   {
-    cout<<i<<". "<<mhs[i]<<".\n";
+    cout<<i+1<<". "<<mhs[i]<<".\n";
   }
 
   for (int i = size; i >= 0; i--)
@@ -31,6 +32,9 @@ int main(){
       break;
     }
   }
+
+  cout<<endl;
+
   if (get)
   {
     cout<<search<<" ditemukan pada urutan ke-"<<index+1;
