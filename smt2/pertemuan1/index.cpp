@@ -70,6 +70,7 @@ void header(string label){
     //deklarasi
     int l = 10, i, center = l / 2;
     // menampilkan header
+    cout<<endl;
     for (i = 0; i <= l; i++)
     {
         // ketika ditengah tampilkan label, jika tidak tampilkan "="
@@ -80,6 +81,7 @@ void header(string label){
 
 // template biodata
 void biodata (string nama, int nim, string domisili, string ttl, string jk){
+    header("Biodata");
     cout << "Nama \t\t: " << nama; cout<<"\n";
     cout << "NIM \t\t: " << nim << "\n";
     cout << "Domisili\t: " << domisili << "\n";
@@ -105,7 +107,6 @@ int main()
     {
         switch(opt){
             case 1 : // biodata
-                header("Biodata");
                 biodata(nama, nim, domisili, ttl, jk);
                 cout<<"\nIngin membuat Biodata sendiri ? (y/n)";
                 cin>>ys;
@@ -118,7 +119,8 @@ int main()
                     cout<<"NIM : ";
                     nim = inputInt();
 
-                    cout<<"Domisili : ";
+                    cin.ignore();
+                    cout << "Domisili : ";
                     getline(cin, domisili);
 
                     cout<<"TTL : ";
