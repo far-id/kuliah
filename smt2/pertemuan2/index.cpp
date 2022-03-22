@@ -151,10 +151,11 @@ int main()
     cout << "3. Tambahkan IPS\n";
     cout << "4. Lihat IPK\n";
     cout << "5. Keluar\n";
-    cout << "Pilih opsi (1,2,...5) : ";
-    option = inputInt();
+
     while (con)
     {
+        cout << "\nPilih opsi (1,2,...5) : ";
+        option = inputInt();
         switch (option)
         {
         case 1:
@@ -176,10 +177,9 @@ int main()
             con = false;
             break;
         }
-
-        cout << "\n(1,2,...5) : ";
-        option = inputInt();
     }
+    
+    cout << "\nGoodbye";
 
     return 0;
 }
