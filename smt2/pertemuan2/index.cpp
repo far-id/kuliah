@@ -3,71 +3,24 @@
 
 using namespace std;
 
-int length = 0;
 typedef struct nilai
 {
-    string semester;
+    int semester;
     float ips;
     int sks;
-} ipk;
+} ip;
 
-typedef struct biodata{
+typedef struct biodata
+{
     string nama;
     int nim;
     string prodi;
-    ipk ips[14];
+    ip ips[14];
 } mhs;
 
 mhs mahasiswa;
-
-
-
-bool already(string value){
-    // for (int i = 0; i < sizeof(array) / sizeof(array[0]); i++)
-    // {
-    //     if (value == array[i])
-    //     {
-    //         return true;
-    //     }
-    // }
-    return false;
-}
-
-bool add(string value){
-    // if (already(value))
-    // {
-    //     return false;
-    // }
-
-    // array[length] = value;
-    // length++;
-    return true;
-}
-
-void hapus(string value){
-    // for (int i = 0; i < length; i++)
-    // {
-    //     if (value == array[i])
-    //     {
-    //         array[i] = "";
-    //         for (int j = i; j < length; j++)
-    //         {
-
-    //             array[j] = array[j + 1];
-    //         }
-    //         length--;
-    //     }
-    // }
-}
-
-void outarray(){
-    // cout << "array [";
-    // for (int i = 0; i < length; i++)
-    // {
-    //     cout << array[i] << ", ";
-    // }
-    // cout << "]";
-}
+int ipsLength = 0;
+bool cBio = false, cIps = false;
 
 int inputInt()
 {
@@ -81,11 +34,25 @@ int inputInt()
     return x;
 }
 
-void header(string label){
-    int length = 40, i, 
+float inputFloat()
+{
+    float x = 0;
+    while (!(cin >> x))
+    {
+        cin.clear();
+        cin.ignore();
+        cout << "Input bukan float. coba lagi : ";
+    }
+    return x;
+}
+
+void header(string label)
+{
+    int length = 40, i,
         start = length - (length / 2) - (label.length() / 2),
         loop = length - label.length();
     cout << endl;
+
     for (i = 0; i <= loop; i++)
     {
         i == start ? cout << " " << label << " " : cout << "=";
@@ -95,53 +62,91 @@ void header(string label){
 
 void intro()
 {
-    header("INTRO");
+    header("ALUR PROGRAM");
     cout << "Anda diharapkan memasukkan biodata diri terlebih dahulu\n";
     cout << "Anda diminta setidaknya mengisi IPS semester 1 dan sebanyaknya semester 14\n";
-    cout << "Anda bisa memilih opsi 4 untuk melihat IPK anda\n";
+    cout << "Pilih opsi 4 untuk melihat IPK anda\n";
+    cout << "Pilih opsi 5 untuk keluar dari program\n";
 }
 
-void biodata(){
+void biodata()
+{
     header("ISI BIODATA");
-    cout << "Masukkan nama anda : ";
+    cout << "Masukkan nama anda\t: ";
     cin.ignore();
     getline(cin, mahasiswa.nama);
 
-    cout << "Masukkan NIM anda : ";
+    cout << "Masukkan NIM anda\t: ";
     mahasiswa.nim = inputInt();
 
-    cout << "Masukkan prodi anda : ";
+    cout << "Masukkan prodi anda\t: ";
     cin.ignore();
     getline(cin, mahasiswa.prodi);
 
+    cBio = true;
     header("BIODATA ANDA");
-    cout<<"Nama\t: "<<mahasiswa.nama<<"\n";
-    cout<<"NIM\t:"<<mahasiswa.nim<<"\n";
-    cout<<"Prodi\t: "<<mahasiswa.prodi<<"\n";
+    cout << "Nama\t: " << mahasiswa.nama << "\n";
+    cout << "NIM\t: " << mahasiswa.nim << "\n";
+    cout << "Prodi\t: " << mahasiswa.prodi << "\n";
 }
 
-void addIps(){
+void addIps(int *tSks)
+{
+    header("Masukkan IPS");
+    cout << "Semester : " << ipsLength + 1 << "\n";
+
+    mahasiswa.ips[ipsLength].semester = ipsLength + 1;
+    cout << "Jumlah SKS : ";
+    mahasiswa.ips[ipsLength].sks = inputInt();
+    cout << "IPS : ";
+    mahasiswa.ips[ipsLength].ips = inputFloat();
+    *tSks += mahasiswa.ips[ipsLength].sks;
+
+    cIps = true;
+    ipsLength++;
+}
+
+void outIps(float *ipk, int *tSks)
+{
     header("IPS");
-    cout << "Masukkan IPS semester 1 : ";
-    mahasiswa.ips[0].semester = "semester 1";
-    mahasiswa.ips[0].ips = inputInt();
-    mahasiswa.ips[0].sks = 20;
-}
+    if (!cBio)
+    {
+        cout << "Anda belum mengisi biodata, harap pilih opsi 2\n";
+    }else {
+        cout << "Nama\t: " << mahasiswa.nama << "\n";
+        cout << "NIM\t: " << mahasiswa.nim << "\n";
+        cout << "Prodi\t: " << mahasiswa.prodi << "\n";
+    }
+    if (ipsLength == 0)
+    {
+        cout << "Anda belum mengisi IPS, harap pilih opsi 3\n";
+    }
+    
+    for (int i = 0; i < ipsLength; i++)
+    {
+        cout << "Semester " << mahasiswa.ips[i].semester << "\n";
+        cout << "Jumlah SKS : " << mahasiswa.ips[i].sks << "\n";
+        cout << "IPS : " << mahasiswa.ips[i].ips << "\n\n";
+        *ipk += mahasiswa.ips[i].ips;
+    }
 
-void outIps(){
-    header("IPS");
-    cout << "IPS semester 1 : " << mahasiswa.ips[0].ips << " dengan SKS " << mahasiswa.ips[0].sks << endl;
+    *ipk /= ipsLength;
+    cout << "IPK anda " << *ipk << " Dengan total SKS " << *tSks << "\n\n";
+    *ipk >= 3.5    ? cout << "IPK anda sangat baik"
+    : *ipk >= 3    ? cout << "IPK anda cukup baik"
+    : *ipk >= 2.75 ? cout << "Anda disarankan memperbaiki IPK anda"
+                   : cout << "Anda harus memperbaiki IPK anda";
 }
-
 
 int main()
 {
     bool con = true;
-    int option;
+    int option, tSks = 0;
     char ys;
-    
+    float ipk = 0.0;
+
     header("Menghitung IPK");
-    cout << "1. Intro\n";
+    cout << "1. Alur Program\n";
     cout << "2. Biodata\n";
     cout << "3. Tambahkan IPS\n";
     cout << "4. Lihat IPK\n";
@@ -159,17 +164,20 @@ int main()
         case 2:
             biodata();
             break;
-            
+
         case 3:
-            addIps();
-            outIps();
+            addIps(&tSks);
+            break;
+
+        case 4:
+            outIps(&ipk, &tSks);
             break;
         default: // menghentikan perulangan
             con = false;
             break;
         }
 
-        cout << "\n(1,2,...5)";
+        cout << "\n(1,2,...5) : ";
         option = inputInt();
     }
 
