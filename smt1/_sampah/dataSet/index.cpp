@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iterator>
 using namespace std;
 
 string larik[10];
@@ -18,6 +19,10 @@ bool already(string value)
 }
 
 bool add(string value){
+  if (sizeof(larik) / sizeof(larik[0]) == panjang)
+  {
+    return false;
+  }
   if (already(value))
   {
     return false;
@@ -31,9 +36,14 @@ bool add(string value){
 void hapus(string value){
   for (int i = 0; i < panjang; i++)
   {
-    if (value == larik[i]);
+    if (value == larik[i])
     {
       larik[i] = "";
+      for (int j = i; j < panjang; j++)
+      {
+      
+        larik[j] = larik[j+1];
+      }
       panjang--;
     }
   }
@@ -47,19 +57,24 @@ void outlarik(){
     cout<<larik[i]<< ", ";
   }
   cout<<"]";
-  
 }
-
-
-
-
 
 int main(){
   add("Farid");
   add("rizky");
   add("wijaya");
-  add("Farid");
-  hapus("some");
+  add("arid");
+  add("iqbal");
+  add("far");
+  add("id");
+  add("faz");
+  add("ya");
+  add("fazya");
+  hapus("rizky");
   outlarik();
+  
+  // string newlarik[20];
+  // copy(begin(larik), end(larik), begin(newlarik));
+  
   return 0;
 }
