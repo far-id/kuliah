@@ -143,6 +143,7 @@ void outIps(float *ipk, int *tSks)
         float **ptptIps[14];
         int **ptptSks[14];
 
+        // kontrol perulangan
         for (int i = 0; i < ipsLength; i++)
         {
             ptptSemester[i] = &ptSemester[i];
@@ -150,6 +151,7 @@ void outIps(float *ipk, int *tSks)
             ptptSks[i] = &ptSks[i];
         }
 
+        // kontrol perulangan
         for (int i = 0; i < ipsLength; i++)
         {
             cout << "Semester " << **ptptSemester[i] << "\n";
@@ -158,6 +160,7 @@ void outIps(float *ipk, int *tSks)
             *ipk += **ptptIps[i];
         }
         *ipk /= ipsLength;
+        // kontrol kondisi
         cout << "IPK anda " << *ipk << " Dengan total SKS " << *tSks << "\n\n";
         *ipk >= 3.5    ? cout << "IPK anda sangat baik"
         : *ipk >= 3    ? cout << "IPK anda cukup baik"
@@ -180,10 +183,12 @@ int main()
     cout << "4. Lihat IPK\n";
     cout << "5. Keluar\n";
 
+    //kontrol perulangan
     while (con)
     {
         cout << "\nPilih opsi (1,2,...5) : ";
         option = inputInt();
+        // kontrol kondisi
         switch (option)
         {
         case 1:
