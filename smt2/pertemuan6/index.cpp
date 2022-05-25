@@ -71,4 +71,4 @@ int main(){
     binarySearch(data, 0, n - 1, cari);
 
     return 0;
-}
+}   
