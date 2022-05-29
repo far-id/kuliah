@@ -8,7 +8,7 @@ void quickSort(int arr[], int left, int right) {
     int pivot = arr[(left + right) / 2];
     while (i <= j) {
         while (arr[i] < pivot)
-            i++;
+            i++;    
         while (arr[j] > pivot)
             j--;
         if (i <= j) {
@@ -18,7 +18,7 @@ void quickSort(int arr[], int left, int right) {
             i++;
             j--;
         }
-    };
+    }
     if (left < j)
         quickSort(arr, left, j);
     if (i < right)
