@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// quick sorting
+// quick sorting ASC
 void quickSort(int arr[], int left, int right) {
     int i = left, j = right;
     int tmp;
@@ -25,8 +25,31 @@ void quickSort(int arr[], int left, int right) {
         quickSort(arr, i, right);
 }
 
+// quick sorting DESC
+void quickSortDesc(int arr[], int left, int right) {
+    int i = left, j = right;
+    int tmp;
+    int pivot = arr[(left + right) / 2];
+    while (i <= j) {
+        while (arr[i] > pivot)
+            i++;    
+        while (arr[j] < pivot)
+            j--;
+        if (i <= j) {
+            tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+            i++;
+            j--;
+        }
+    }
+    if (left < j)
+        quickSortDesc(arr, left, j);
+    if (i < right)
+        quickSortDesc(arr, i, right);
+}
 
-// shell sort
+// shell sort ASC
 void shellSort(int arr[], int n) {
     int i, j, tmp, gap;
     for (gap = n / 2; gap > 0; gap /= 2) {
@@ -39,7 +62,20 @@ void shellSort(int arr[], int n) {
     }
 }
 
-// insertion sort
+// shell sort DESC
+void shellSortDescending(int arr[], int n) {
+    int i, j, tmp, gap;
+    for (gap = n / 2; gap > 0; gap /= 2) {
+        for (i = gap; i < n; i += 1) {
+            tmp = arr[i];
+            for (j = i; j >= gap && arr[j - gap] < tmp; j -= gap)
+                arr[j] = arr[j - gap];
+            arr[j] = tmp;
+        }
+    }
+}
+
+// insertion sort ASC
 void insertionSort(int arr[], int n) {
     int i, j, tmp;
     for (i = 1; i < n; i++) {
@@ -49,8 +85,18 @@ void insertionSort(int arr[], int n) {
         arr[j + 1] = tmp;
     }
 }
+// insertion sort DESC
+void insertionSortDescending(int arr[], int n) {
+    int i, j, tmp;
+    for (i = 1; i < n; i++) {
+        tmp = arr[i];
+        for (j = i - 1; j >= 0 && arr[j] < tmp; j--)
+            arr[j + 1] = arr[j];
+        arr[j + 1] = tmp;
+    }
+}
 
-//selection sort
+//selection sort ASC
 void selectionSort(int arr[], int n) {
     int i, j, min_idx;
     for (i = 0; i < n - 1; i++) {
@@ -61,8 +107,19 @@ void selectionSort(int arr[], int n) {
         swap(arr[min_idx], arr[i]);
     }
 }
+// selection sort DESC
+void selectionSortDescending(int arr[], int n) {
+    int i, j, min_idx;
+    for (i = 0; i < n - 1; i++) {
+        min_idx = i;
+        for (j = i + 1; j < n; j++)
+            if (arr[j] > arr[min_idx])
+                min_idx = j;
+        swap(arr[min_idx], arr[i]);
+    }
+}
 
-// bubble sort
+// bubble sort ASC
 void bubbleSort(int arr[], int n) {
     int i, j;
     for (i = 0; i < n - 1; i++)
@@ -70,76 +127,78 @@ void bubbleSort(int arr[], int n) {
             if (arr[j] > arr[j + 1])
                 swap(arr[j], arr[j + 1]);
 }
+
+// bubble sort DESC
+void bubbleSortDescending(int arr[], int n) {
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+        for (j = 0; j < n - i - 1; j++)
+            if (arr[j] < arr[j + 1])
+                swap(arr[j], arr[j + 1]);
+}
+
 int main(){
-    int n;
-    cout << "Masukkan jumlah data: ";
-    cin >> n;
-    int arr[n];
-    cout << "Masukkan data: ";
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
-    // cout << "Pilih metode sorting: " << endl;
-    // cout << "1. Quick Sort" << endl;
-    // cout << "2. Shell Sort" << endl;
-    // cout << "3. Insertion Sort" << endl;
-    // cout << "4. Selection Sort" << endl;
-    // cout << "5. Bubble Sort" << endl;
-    // int pilihan;
-    // cin >> pilihan;
-    // switch (pilihan) {
-    //     case 1:
-    //         quickSort(arr, 0, n - 1);
-    //         break;
-    //     case 2:
-    //         shellSort(arr, n);
-    //         break;
-    //     case 3:
-    //         insertionSort(arr, n);
-    //         break;
-    //     case 4:
-    //         selectionSort(arr, n);
-    //         break;
-    //     case 5:
-    //         bubbleSort(arr, n);
-    //         break;
-    //     default:
-    //         cout << "Pilihan tidak ada" << endl;
-    //         break;
-    // }
-    // cout << "Hasil: ";
-    // for (int i = 0; i < n; i++)
-    //     cout << arr[i] << " ";
-    // cout << endl;
-
-    quickSort(arr, 0, n - 1);
-    cout << "Hasil quicksort: ";
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
-
-    shellSort(arr, n);
-    cout << "Hasil shellsort: ";
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
-
-    insertionSort(arr, n);
-    cout << "Hasil insertionsort: ";
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+    int n = 10, arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 9};
     
-    selectionSort(arr, n);
-    cout << "Hasil selectionsort: ";
+    cout<<"Quick Sort Ascending"<<endl;
+    quickSort(arr, 0, n - 1);
     for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+        cout<<arr[i]<<" ";
+    cout<<endl;
 
-    bubbleSort(arr, n);
-    cout << "Hasil bubblesort: ";
+    cout<<"Quick Sort Descending"<<endl;
+    quickSortDesc(arr, 0, n - 1);
     for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+        cout<<arr[i]<<" ";
+    cout<<endl;
+
+    cout<<"Shell Sort Ascending"<<endl;
+    shellSort(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+
+    cout<<"Shell Sort Descending"<<endl;
+    shellSortDescending(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+
+    cout<<"Insertion Sort Ascending"<<endl;
+    insertionSort(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+
+    cout<<"Insertion Sort Descending"<<endl;
+    insertionSortDescending(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+    
+    cout<<"Selection Sort Ascending"<<endl;
+    selectionSort(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+
+    cout<<"Selection Sort Descending"<<endl;
+    selectionSortDescending(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+    
+    cout<<"Bubble Sort Ascending"<<endl;
+    bubbleSort(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+    
+    cout<<"Bubble Sort Descending"<<endl;
+    bubbleSortDescending(arr, n);
+    for (int i = 0; i < n; i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
     
     return 0;
 }
