@@ -26,7 +26,7 @@ void quickSort(int arr[], int left, int right) {
 }
 
 // quick sorting DESC
-void quickSortDesc(int arr[], int left, int right) {
+void quickSortDescending(int arr[], int left, int right) {
     int i = left, j = right;
     int tmp;
     int pivot = arr[(left + right) / 2];
@@ -44,9 +44,9 @@ void quickSortDesc(int arr[], int left, int right) {
         }
     }
     if (left < j)
-        quickSortDesc(arr, left, j);
+        quickSortDescending(arr, left, j);
     if (i < right)
-        quickSortDesc(arr, i, right);
+        quickSortDescending(arr, i, right);
 }
 
 // shell sort ASC
@@ -147,7 +147,7 @@ int main(){
     cout<<endl;
 
     cout<<"Quick Sort Descending"<<endl;
-    quickSortDesc(arr, 0, n - 1);
+    quickSortDescending(arr, 0, n - 1);
     for (int i = 0; i < n; i++)
         cout<<arr[i]<<" ";
     cout<<endl;
