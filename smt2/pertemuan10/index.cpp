@@ -26,17 +26,6 @@ void tambahDepan(){
     }
 }
 
-// void tambahBelakang(){
-//     btBaru();
-//     if (awal == NULL){
-//         awal = baru;
-//     }
-//     else{
-//         akhir = baru;
-//         akhir->next = NULL;
-//     }
-// }
-
 void tambahBelakang(){
     btBaru();
     if (awal == NULL){
