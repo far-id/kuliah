@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-// double circular linked list
+// double linear linked list
 struct sampul {
     int angka;
     struct sampul *prev, *next;
