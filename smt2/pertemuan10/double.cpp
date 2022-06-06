@@ -1,9 +1,11 @@
+// double linked list
 #include <iostream>
 using namespace std;
 
+// double circular linked list
 struct sampul {
     int angka;
-    struct sampul *next;
+    struct sampul *prev, *next;
 } *baru, *awal = NULL, *akhir = NULL, *current, *hapus;
 
 void btBaru(){
@@ -12,6 +14,7 @@ void btBaru(){
     cout << "Input Angka : ";
     cin >> baru->angka;
     baru->next = NULL;
+    baru->prev = NULL;
 }
 
 void tambahDepan(){
@@ -20,8 +23,10 @@ void tambahDepan(){
         awal = baru;
         akhir = baru;
         akhir->next = NULL;
+        akhir->prev = NULL;
     }else {
         baru->next = awal;
+        awal->prev = baru;
         awal = baru;
     }
 }
@@ -35,6 +40,7 @@ void tambahBelakang(){
     }
     akhir = baru;
     akhir->next = NULL;
+    akhir->prev = NULL;
 }
 
 void tampil(){
@@ -73,42 +79,32 @@ void hapusBelakang(){
         current = current->next;
     }
 }
-
-void pilih(){
+int main(){
     int pilih;
-    bool con = true;
-    while (con)
-    {
-        cout << "Pilih Menu : " << endl;
+    do{
         cout << "1. Tambah Depan" << endl;
         cout << "2. Tambah Belakang" << endl;
         cout << "3. Hapus Depan" << endl;
         cout << "4. Hapus Belakang" << endl;
-        cout << "5. Tampilkan" << endl;
-        cout << "6. Keluar" << endl;
+        cout << "5. Tampil" << endl;
+        cout << "6. Exit" << endl;
         cout << "Pilih : ";
         cin >> pilih;
-        cout<<"\n\n";
-        switch (pilih)
-        {
-        case 1 : tambahDepan();
-            break;
-        case 2 : tambahBelakang();
-            break;
-        case 3 : hapusDepan();
-            break;
-        case 4 : hapusBelakang();
-            break;
-        case 5 : tampil();
-            break;
-        case 6 : con = false;
-            break;
-        default : cout << "Pilihan tidak ada" << endl;
+        switch (pilih){
+            case 1 : tambahDepan();
+                break;
+            case 2 : tambahBelakang();
+                break;
+            case 3 : hapusDepan();
+                break;
+            case 4 : hapusBelakang();
+                break;
+            case 5 : tampil();
+                break;
+            case 6 : exit(0);
+                break;
+            default: cout << "Pilihan tidak ada" << endl;
         }
-    }
-    
-}
-int main(){
-    pilih ();
+    }while (pilih != 6);
     return 0;
 }
