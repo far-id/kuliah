@@ -6,6 +6,16 @@ struct sampul {
     struct sampul *next;
 } *baru, *awal = NULL, *akhir = NULL, *current, *hapus;
 
+int inputInt(){
+    int x = 0;
+    // jika input mengalami kegagalan ulangi input
+    while (!(cin >> x)){
+        cin.clear();
+        cin.ignore(numeric_limits<int>::max(), '\n');
+        cout << "Input bukan integer. coba lagi : ";
+    }
+    return x;
+}
 void btBaru(){
     cout << "Tambah Data" << endl;
     baru = (sampul*)malloc(sizeof(sampul));
@@ -41,6 +51,7 @@ void tampil(){
     if (awal == NULL){
         cout << "Data Kosong" << endl;
     }else{
+        // menampilkan data dari data awal sampai data->next == NULL
         current = awal;
         while (current != NULL){
             cout << current->angka << " ";
@@ -54,6 +65,7 @@ void hapusDepan(){
     if (awal == NULL){
         cout << "Data Kosong" << endl;
     }else{
+        // memindahkan nilai awal ke current, mengganti nilai awal menjadi data setelahnya dan mengalokasikan data current
         current = awal;
         awal = awal->next;
         free(current);
@@ -62,15 +74,22 @@ void hapusDepan(){
 
 void hapusBelakang(){
     current = awal;
-    while (current){
-        if (current->next == akhir){
-            hapus = akhir;
-            akhir = current;
-            akhir->next = NULL;
-            delete hapus;
-            break;
+    if (awal == NULL){
+        cout << "Data Kosong" << endl;
+    }else if (awal->next == NULL){
+        // jika awal adalah akhir maka buat variabel awal dan akhir menjadi NULL dan alokasikan variabel current
+        awal = NULL;
+        akhir = NULL;
+        free(current);
+    }else{
+        // cek apakah data setelahnya adalah akhir
+        while (current->next != akhir){
+            current = current->next;
         }
-        current = current->next;
+        // jika data setelahnya adalah akhir maka putus reference ke data setelahnya, buat data itu jadi akhir dan alokasikan variabel current
+        current->next = NULL;
+        akhir = current;
+        free(akhir->next);
     }
 }
 
@@ -87,7 +106,7 @@ void pilih(){
         cout << "5. Tampilkan" << endl;
         cout << "6. Keluar" << endl;
         cout << "Pilih : ";
-        cin >> pilih;
+        pilih = inputInt();
         cout<<"\n\n";
         switch (pilih)
         {
@@ -103,7 +122,7 @@ void pilih(){
             break;
         case 6 : con = false;
             break;
-        default : cout << "Pilihan tidak ada" << endl;
+        default : cout << "Pilihan tidak ada" << endl;pilih = 0;
         }
     }
     

@@ -138,67 +138,75 @@ void bubbleSortDescending(int arr[], int n) {
 }
 
 int main(){
-    int n = 10, arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 9};
+    // auto fill from 0 to 100 random integer in array
+    int arr[100];
+    for (int i = 0; i < 100; i++)
+        arr[i] = rand() % 100;
+    // print array
+    for (int i = 0; i < 100; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+    // int n = 10, arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 10, 9};
     
-    cout<<"Quick Sort Ascending"<<endl;
-    quickSort(arr, 0, n - 1);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Quick Sort Ascending"<<endl;
+    // quickSort(arr, 0, n - 1);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
 
-    cout<<"Quick Sort Descending"<<endl;
-    quickSortDescending(arr, 0, n - 1);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Quick Sort Descending"<<endl;
+    // quickSortDescending(arr, 0, n - 1);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
 
-    cout<<"Shell Sort Ascending"<<endl;
-    shellSort(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Shell Sort Ascending"<<endl;
+    // shellSort(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
 
-    cout<<"Shell Sort Descending"<<endl;
-    shellSortDescending(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Shell Sort Descending"<<endl;
+    // shellSortDescending(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
 
-    cout<<"Insertion Sort Ascending"<<endl;
-    insertionSort(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Insertion Sort Ascending"<<endl;
+    // insertionSort(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
 
-    cout<<"Insertion Sort Descending"<<endl;
-    insertionSortDescending(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Insertion Sort Descending"<<endl;
+    // insertionSortDescending(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
     
-    cout<<"Selection Sort Ascending"<<endl;
-    selectionSort(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Selection Sort Ascending"<<endl;
+    // selectionSort(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
 
-    cout<<"Selection Sort Descending"<<endl;
-    selectionSortDescending(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Selection Sort Descending"<<endl;
+    // selectionSortDescending(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
     
-    cout<<"Bubble Sort Ascending"<<endl;
-    bubbleSort(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Bubble Sort Ascending"<<endl;
+    // bubbleSort(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
     
-    cout<<"Bubble Sort Descending"<<endl;
-    bubbleSortDescending(arr, n);
-    for (int i = 0; i < n; i++)
-        cout<<arr[i]<<" ";
-    cout<<endl;
+    // cout<<"Bubble Sort Descending"<<endl;
+    // bubbleSortDescending(arr, n);
+    // for (int i = 0; i < n; i++)
+    //     cout<<arr[i]<<" ";
+    // cout<<endl;
     
     return 0;
 }
