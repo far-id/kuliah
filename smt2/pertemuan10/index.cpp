@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 using namespace std;
 
 struct sampul {
@@ -16,11 +17,27 @@ int inputInt(){
     }
     return x;
 }
+
+void tampil(){
+    if (awal == NULL){
+        cout << "Data Kosong" << endl;
+    }else{
+        // menampilkan data dari data awal sampai data->next == NULL
+        current = awal;
+        cout<<"Data : ";
+        while (current != NULL){
+            cout << current->angka << " ";
+            current = current->next;
+        }
+        cout << "\n\n";
+    }
+} 
+
 void btBaru(){
     cout << "Tambah Data" << endl;
     baru = (sampul*)malloc(sizeof(sampul));
     cout << "Input Angka : ";
-    cin >> baru->angka;
+    baru->angka = inputInt();
     baru->next = NULL;
 }
 
@@ -34,6 +51,7 @@ void tambahDepan(){
         baru->next = awal;
         awal = baru;
     }
+    tampil();
 }
 
 void tambahBelakang(){
@@ -45,21 +63,9 @@ void tambahBelakang(){
     }
     akhir = baru;
     akhir->next = NULL;
+    tampil();
 }
 
-void tampil(){
-    if (awal == NULL){
-        cout << "Data Kosong" << endl;
-    }else{
-        // menampilkan data dari data awal sampai data->next == NULL
-        current = awal;
-        while (current != NULL){
-            cout << current->angka << " ";
-            current = current->next;
-        }
-        cout << endl;
-    }
-}   
 
 void hapusDepan(){
     if (awal == NULL){
@@ -70,6 +76,7 @@ void hapusDepan(){
         awal = awal->next;
         free(current);
     }
+    tampil();
 }
 
 void hapusBelakang(){
@@ -91,6 +98,7 @@ void hapusBelakang(){
         akhir = current;
         free(akhir->next);
     }
+    tampil();
 }
 
 void pilih(){
@@ -107,7 +115,7 @@ void pilih(){
         cout << "6. Keluar" << endl;
         cout << "Pilih : ";
         pilih = inputInt();
-        cout<<"\n\n";
+        cout<<endl;
         switch (pilih)
         {
         case 1 : tambahDepan();
@@ -125,7 +133,6 @@ void pilih(){
         default : cout << "Pilihan tidak ada" << endl;pilih = 0;
         }
     }
-    
 }
 int main(){
     pilih ();
