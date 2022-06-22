@@ -30,7 +30,6 @@ void quickSort(int arr[], int left, int right) {
         quickSort(arr, i, right);
 }
 
-
 void shellSort(int arr[], int size) {
     int i, j, tmp, gap;
     for (gap = size / 2; gap > 0; gap /= 2) {
@@ -43,7 +42,6 @@ void shellSort(int arr[], int size) {
     }
 }
 
-
 void insertionSort(int arr[], int size) {
     int i, j, tmp;
     for (i = 1; i < size; i++) {
@@ -53,7 +51,6 @@ void insertionSort(int arr[], int size) {
         arr[j + 1] = tmp;
     }
 }
-
 
 void selectionSort(int arr[], int size) {
     int i, j, min_idx;
@@ -65,7 +62,6 @@ void selectionSort(int arr[], int size) {
         swap(arr[min_idx], arr[i]);
     }
 }
-
 
 void bubbleSort(int arr[], int size) {
     int i, j;
@@ -158,7 +154,6 @@ void heapSort(int arr[], int size){
     }
 }
 
-
 void randomData(int *arr, int size) {
     srand(time(NULL));
     for (int i = 0; i < size; i++)
@@ -223,8 +218,8 @@ void runtime(int array[], int size){
     time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
     time_taken *= 1e-9;
     cout << "Heap Sort\t: " << time_taken << setprecision(9) << " sec\n";
-
 }
+
 int main(){
     int a10k[10000], size10k = 10000;
     int a20k[20000], size20k = 20000;
