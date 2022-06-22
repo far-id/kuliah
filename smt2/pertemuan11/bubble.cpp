@@ -1,22 +1,20 @@
 #include <iostream>
-#include <conio.h>
 using namespace std;
 
 
 int main(){
-    int nilai['n'];
-    int temp, n;
-    cout << "Masukkan jumlah data : ";
+    int nilai['n'], temp, n;
+    cout << "banyak data: ";
     cin >> n;
 
-    for (int i = 0; i <= n; i++)
+    for (int i = 1; i <= n; i++)
     {
         cout << "Nilai [" << i << "] : ";
         cin >> nilai[i];
     }
     
     cout << "\nData sebelum diurutkan : ";
-    for (int i = 0; i <= n; i++)
+    for (int i = 1; i <= n; i++)
     {
         cout << nilai[i] << " ";
     }
@@ -36,13 +34,13 @@ int main(){
     }
 
     cout << "\nData setelah diurutkan ASC : ";
-    for (int i = 0; i <= n; i++)
+    for (int i = 1; i <= n; i++)
     {
         cout << nilai[i] << " ";
     }
 
     cout << "\nData setelah diurutkan DESC : ";
-    for (int i = n; i >= 0; i--)
+    for (int i = n; i >= 1; i--)
     {
         cout << nilai[i] << " ";
     }    

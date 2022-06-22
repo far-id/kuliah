@@ -4,60 +4,91 @@ using namespace std;
 
 // A sample function whose time taken to
 // be measured
-void shellSort(int arr[], int n)
+
+void radixSort(int arr[], int size)
 {
-    int i, j, tmp, gap;
-    for (gap = n / 2; gap > 0; gap /= 2)
+    // deklarasi variabel
+    int i, j, m, p = 1, index, temp, count = 0, max = arr[0];
+    // mencari nilai maksimum
+    for (i = 0; i < size; i++)
     {
-        for (i = gap; i < n; i += 1)
+        if (arr[i] > max)
         {
-            tmp = arr[i];
-            for (j = i; j >= gap && arr[j - gap] > tmp; j -= gap)
-                arr[j] = arr[j - gap];
-            arr[j] = tmp;
+            max = arr[i];
+        }
+    }
+    list<int> pocket[10]; // radix of decimal number is 10
+    for (i = 0; i < max; i++)
+    {
+        m = pow(10, i + 1);
+        p = pow(10, i);
+        for (j = 0; j < size; j++)
+        {
+            temp = arr[j] % m;
+            index = temp / p; // find index for pocket array
+            pocket[index].push_back(arr[j]);
+        }
+        count = 0;
+        for (j = 0; j < 10; j++)
+        {
+            // delete from linked lists and store to array
+            while (!pocket[j].empty())
+            {
+                arr[count] = *(pocket[j].begin());
+                pocket[j].erase(pocket[j].begin());
+                count++;
+            }
         }
     }
 }
+
+void heapify(int arr[], int n, int i)
+{
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+    if (largest != i)
+    {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+void heapSort(int arr[], int size)
+{
+    int i, j, temp;
+    for (i = size / 2 - 1; i >= 0; i--)
+    {
+        heapify(arr, size, i);
+    }
+    for (i = size - 1; i >= 0; i--)
+    {
+        temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+        heapify(arr, i, 0);
+    }
+}
+
+void randomData(int *arr, int size)
+{
+    srand(time(NULL));
+    for (int i = 0; i < size; i++)
+        arr[i] = rand() % 1000000;
+}
 int main()
 {
-    auto start = chrono::high_resolution_clock::now();
+    int array[10000];
+    randomData(array, 10000);
 
-    // unsync the I/O of C and C++.
-    ios_base::sync_with_stdio(false);
-
-    int array[50000], n = sizeof(array) / sizeof(array[0]);
-    // auto fill random int from 0 to 10000
-    for (int i = 0; i < n; i++)
-    {
-        array[i] = rand() % 10;
-    }
-    // print array before sort
-    // cout << "Array before sort : ";
-    // for (int i = 0; i < n; i++)
-    // {
-    //     cout << array[i] << " ";
-    // }
-    // cout << endl;
-    // sort array
-    shellSort(array, n);
-    // print array after sort
-    // cout << "Array after sort : ";
-    // for (int i = 0; i < n; i++)
-    // {
-    //     cout << array[i] << " ";
-    // }
-    // cout << endl;
-
-    auto end = chrono::high_resolution_clock::now();
-
-    // Calculating total time taken by the program.
-    double time_taken =
-        chrono::duration_cast<chrono::nanoseconds>(end - start).count();
-
-    time_taken *= 1e-9;
-
-    cout << "Time taken by program is : " << fixed
-         << time_taken << setprecision(9);
-    cout << " sec" << endl;
+    cout<<"before :";
+    radixSort(array, 10000);
+    cout<<"\nafter :";
+    
+    
+    
     return 0;
 }

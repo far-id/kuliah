@@ -43,7 +43,10 @@
     "xmemory": "cpp",
     "xmemory0": "cpp",
     "xstddef": "cpp",
-    "xtr1common": "cpp"
+    "xtr1common": "cpp",
+    "chrono": "cpp",
+    "list": "cpp",
+    "ratio": "cpp"
   },
   "peacock.color": "#404088",
   "workbench.colorCustomizations": {
