@@ -233,13 +233,11 @@ int main(){
     randomData(a40k, size40k);
     randomData(a50k, size50k);
 
-    for (int i = 0; i < 5; i++){
-        (i == 0) ? runtime(a10k, size10k) :
-        (i == 1) ? runtime(a20k, size20k) :
-        (i == 2) ? runtime(a30k, size30k) :
-        (i == 3) ? runtime(a40k, size40k) :
-                   runtime(a50k, size50k);
-    }
+    runtime(a10k, size10k);
+    runtime(a20k, size20k);
+    runtime(a30k, size30k);
+    runtime(a40k, size40k);
+    runtime(a50k, size50k);
     
     return 0;
 }
