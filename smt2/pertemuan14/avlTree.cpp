@@ -1,7 +1,8 @@
 #include <iostream>
+#include <limits>
 using namespace std;
 
-typedef struct Node
+struct Node
 {
     int data;
     Node *kiri;
@@ -10,20 +11,32 @@ typedef struct Node
 
 Node *pohon = NULL;
 
+int inputInt()
+{
+    int x = 0;
+    // jika input mengalami kegagalan ulangi input
+    while (!(cin >> x))
+    {
+        cin.clear(); // menghilangkan flag error
+        cin.ignore(numeric_limits<int>::max(), '\n');
+        cout << "Input bukan integer. coba lagi : ";
+    }
+    return x;
+}
 void tambah(Node **root, int newData)
 {
     // jika root masih kosong
     if ((*root) == NULL)
     {
         Node *baru;
-        root = new Node;
+        baru = new Node;
         baru->data = newData;
         baru->kiri = NULL;
         baru->kanan = NULL;
         (*root) = baru;
         (*root)->kiri = NULL;
         (*root)->kanan = NULL;
-        printf("Data Berhasil Ditambah!");
+        printf("Data Berhasil Ditambah!\n");
     }else if(newData <= (*root)->data){
         tambah(&(*root)->kiri, newData);
     }else if(newData >= (*root)->data){
@@ -34,7 +47,7 @@ void tambah(Node **root, int newData)
 void preOrder(Node *root){
     if (root != NULL)
     {
-        if (root->data != NULL)
+        if (root->data)
         {
             printf("%d", root->data);
         }
@@ -47,7 +60,7 @@ void inOrder(Node *root){
     if (root != NULL)
     {
         inOrder(root->kiri);
-        if (root->data != NULL)
+        if (root->data)
         {
             printf("%d", root->data);
         }
@@ -60,7 +73,7 @@ void postOrder(Node *root){
     {
         postOrder(root->kiri);
         postOrder(root->kanan);
-        if (root->data != NULL)
+        if (root->data)
         {
             printf("%", root->data);
         }
@@ -71,15 +84,30 @@ void pilihan(){
     cout<<"1. Tambah Data\n";
     cout<<"2. Preorder\n";
     cout<<"3. Inorder\n";
-    cout
+    cout<<"4. Postorder\n\n";
 }
 int main()
 {
     int pilih;
 
+    pilihan();
     do
     {
-        pilihan();
+        pilih = inputInt();
+        switch (pilih)
+        {
+        case 1: tambah(&pohon, inputInt());
+            break;
+        case 2: preOrder(pohon);
+            break;
+        case 3: inOrder(pohon);
+            break;
+        case 4: postOrder(pohon);
+            break;
+        
+        default:
+            break;
+        }
     } while (pilih != 9);
     
     return 0;
