@@ -1,0 +1,14 @@
+A+(B*C)/(D-E)
+
+STACK   OUTPUT
+)
+        E
+)-      ED
+        ED-
+/
+/)      ED-C
+/) *    ED-CB
+/       ED-CB*
++       ED-CB*/
+        ED-CB*/A+
+        +A/*BC-DE
