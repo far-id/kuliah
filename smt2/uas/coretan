@@ -1,5 +1,15 @@
 A+(B*C)/(D-E)
 
+postfix
+STACK   OUTPUT
+        A
++(      AB
++       AB*
++/(     AB*D
++/      AB*DE-
+        AB*DE-/+
+        
+prefix
 STACK   OUTPUT
 )
         E

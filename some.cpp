@@ -1,95 +1,9 @@
-#include <bits/stdc++.h>
+// Using inbuilt stack library to create stack
+#include <iostream>
+#include <stack>
 using namespace std;
-// definition of functions
-struct Stack *create(int max);
-int stackFull(struct Stack *stack);
-int stackEmpty(struct Stack *stack);
-void pushElement(struct Stack *stack, int item);
-int popElement(struct Stack *stack);
-int peekElement(struct Stack *stack);
-int checkOperand(char ch);
-int precedence(char ch);
-int postfix(char *expression);
-void reverse(char *exp);
-void brackets(char *exp);
-void conversionInfixToPrefix(char *exp);
-// A structure to represent a stack
-struct Stack
-{
-  int top;
-  int maxSize;
-  int *array;
-};
-int main()
-{
-  int n = 10;
-  cout << "The infix expression is: \n";
-  char expression[] = "A+(B*C)/(D-E)";
-  cout << expression << "\n";
-  conversionInfixToPrefix(expression);
-  cout << "The prefix expression is: \n";
-  cout << expression;
-  return 0;
-}
-// stack implementation
-struct Stack *create(int max)
-{
-  struct Stack *stack = (struct Stack *)malloc(sizeof(struct Stack));
-  stack->maxSize = max;
-  stack->top = -1;
-  stack->array = (int *)malloc(stack->maxSize * sizeof(int));
-  return stack;
-}
 
-// Checking with this function is stack is full or not
-int stackFull(struct Stack *stack)
-{
-  if (stack->top == stack->maxSize - 1)
-  {
-    cout << "Will not be able to push maxSize reached\n";
-  }
-  // We know array index from 0 and maxSize starts from 1
-  return stack->top == stack->maxSize - 1;
-}
-
-// if Stack is empty when top is equal to -1 and return true
-int stackEmpty(struct Stack *stack)
-{
-  return stack->top == -1;
-}
-
-// Push function it inserts value in stack and increments stack top by 1
-void pushElement(struct Stack *stack, int item)
-{
-  if (stackFull(stack))
-    return;
-  stack->array[++stack->top] = item;
-}
-
-// pop Function it remove an item from stack and decreases top by 1
-int popElement(struct Stack *stack)
-{
-  if (stackEmpty(stack))
-    return INT_MIN;
-  return stack->array[stack->top--];
-}
-
-// Function to return the top from stack without removing it
-int peekElement(struct Stack *stack)
-{
-  if (stackEmpty(stack))
-    return INT_MIN;
-  return stack->array[stack->top];
-}
-
-// A function check the given character is operand
-int checkOperand(char ch)
-{
-  return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
-}
-
-// Fucntion to compare precedence if return larger value means higher precedence
-int precedence(char ch)
+int priority(char alpha)
 {
   if (alpha == '+' || alpha == '-')
     return 1;
@@ -102,87 +16,65 @@ int precedence(char ch)
 
   return 0;
 }
-
-// The function for infix to postfix conversion
-int postfix(char *expression)
-{
-  int i, j;
-  struct Stack *stack = create(strlen(expression));
-  if (!stack)
-    return -1;
-
-  for (i = 0, j = -1; expression[i]; ++i)
-  {
-    // checking the character we scanned is operand or not
-    if (checkOperand(expression[i]))
-      expression[++j] = expression[i];
-
-    // if we scan character push it to the stack
-    else if (expression[i] == '(')
-      pushElement(stack, expression[i]);
-
-    // if we scan character we need to pop and print from the stack
-    else if (expression[i] == ')')
-    {
-      while (!stackEmpty(stack) && peekElement(stack) != '(')
-        expression[++j] = popElement(stack);
-      if (!stackEmpty(stack) && peekElement(stack) != '(')
-        return -1; // invalid expression
-      else
-        popElement(stack);
-    }
-    else // if an operator
-    {
-      while (!stackEmpty(stack) && precedence(expression[i]) <= precedence(peekElement(stack)))
-        expression[++j] = popElement(stack);
-      pushElement(stack, expression[i]);
-    }
-  }
-
-  // if all first expression characters are scanned
-  // adding all left elements from stack to expression
-  while (!stackEmpty(stack))
-    expression[++j] = popElement(stack);
-  expression[++j] = '\0';
-
-  return 0;
-}
-
-void reverse(char *exp)
-{ // reverse function for expression
-
-  int size = strlen(exp);
-  int j = size, i = 0;
-  char temp[size];
-
-  temp[j--] = '\0';
-  while (exp[i] != '\0')
-  {
-    temp[j] = exp[i];
-    j--;
-    i++;
-  }
-  strcpy(exp, temp);
-}
-
-void brackets(char *exp)
+string convert(string infix)
 {
   int i = 0;
-  while (exp[i] != '\0')
+  string postfix = "";
+  // using inbuilt stack< > from C++ stack library
+  stack<int> s;
+
+  while (infix[i] != '\0')
   {
-    if (exp[i] == '(')
-      exp[i] = ')';
-    else if (exp[i] == ')')
-      exp[i] = '(';
-    i++;
+    // if operand add to the postfix expression
+    if (infix[i] >= 'a' && infix[i] <= 'z' || infix[i] >= 'A' && infix[i] <= 'Z')
+    {
+      postfix += infix[i];
+      i++;
+    }
+    // if opening bracket then push the stack
+    else if (infix[i] == '(')
+    {
+      s.push(infix[i]);
+      i++;
+    }
+    // if closing bracket encounted then keep popping from stack until
+    // closing a pair opening bracket is not encountered
+    else if (infix[i] == ')')
+    {
+      while (s.top() != '(')
+      {
+        postfix += s.top();
+        s.pop();
+      }
+      s.pop();
+      i++;
+    }
+    else
+    {
+      while (!s.empty() && priority(infix[i]) <= priority(s.top()))
+      {
+        postfix += s.top();
+        s.pop();
+      }
+      s.push(infix[i]);
+      i++;
+    }
   }
+  while (!s.empty())
+  {
+    postfix += s.top();
+    s.pop();
+  }
+
+  cout << "Postfix is : " << postfix; // it will print postfix conversion
+  return postfix;
 }
 
-void conversionInfixToPrefix(char *exp)
+int main()
 {
-  int size = strlen(exp);
-  reverse(exp);
-  brackets(exp);
-  postfix(exp);
-  reverse(exp);
+  string infix = "((a+(b*c))-d)";
+  string postfix;
+  postfix = convert(infix);
+
+  return 0;
 }
