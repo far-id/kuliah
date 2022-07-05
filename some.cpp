@@ -26,7 +26,7 @@ string convert(string infix)
   while (infix[i] != '\0')
   {
     // if operand add to the postfix expression
-    if (infix[i] >= 'a' && infix[i] <= 'z' || infix[i] >= 'A' && infix[i] <= 'Z')
+    if (infix[i] >= 'a' && infix[i] <= 'z' || infix[i] >= 'A' && infix[i] <= 'Z' || infix[i] >= '0' && infix[i] <= '9')
     {
       postfix += infix[i];
       i++;
@@ -72,7 +72,8 @@ string convert(string infix)
 
 int main()
 {
-  string infix = "((a+(b*c))-d)";
+  // string infix = "((a+(b*c))-d)";
+  string infix = "A+(B*C)/(D-E)";
   string postfix;
   postfix = convert(infix);
 

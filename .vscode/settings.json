@@ -46,7 +46,8 @@
     "xtr1common": "cpp",
     "chrono": "cpp",
     "list": "cpp",
-    "ratio": "cpp"
+    "ratio": "cpp",
+    "stack": "cpp"
   },
   "peacock.color": "#404088",
   "workbench.colorCustomizations": {

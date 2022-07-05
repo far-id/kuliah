@@ -4,10 +4,10 @@ postfix
 STACK   OUTPUT
         A
 +(      AB
-+       AB*
-+/(     AB*D
-+/      AB*DE-
-        AB*DE-/+
++       ABC*
++/(     ABC*D
++/      ABC*DE-
+        ABC*DE-/+
         
 prefix
 STACK   OUTPUT
