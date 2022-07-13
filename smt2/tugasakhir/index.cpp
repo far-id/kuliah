@@ -32,7 +32,7 @@ void quickSort(int arr[], int left, int right) {
 
 void shellSort(int arr[], int size) {
     int i, j, tmp, gap;
-    for (gap = size / 2; gap > 0; gap /= 2) {
+    for (gap = size / 2; gap > 0; gap /= 2) {   // N/
         for (i = gap; i < size; i += 1) {
             tmp = arr[i];
             for (j = i; j >= gap && arr[j - gap] > tmp; j -= gap)

@@ -1,24 +1,12 @@
-A+(B*C)/(D-E)
+infix A+(B*C)/(D-E)
 
-postfix
-STACK   OUTPUT
+STACK   postfix
         A
 +(      AB
++(*     ABC
 +       ABC*
 +/(     ABC*D
++/(-    ABC*DE
 +/      ABC*DE-
         ABC*DE-/+
-        
-prefix
-STACK   OUTPUT
-)
-        E
-)-      ED
-        ED-
-/
-/)      ED-C
-/) *    ED-CB
-/       ED-CB*
-+       ED-CB*/
-        ED-CB*/A+
-        +A/*BC-DE
+
