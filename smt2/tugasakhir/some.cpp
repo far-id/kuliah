@@ -11,18 +11,18 @@ void bubbleSort(int arr[], int size)
 }
 
 int main(){
-    int array[10];
-    for (int i = 0; i < 10; i++)
+    int array[10]; // deklarasi array
+    for (int i = 0; i < 10; i++) // random data
         array[i] = rand() % 20;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++)    // print data yang masih random
     {
         cout << array[i] << " ";
     }
 
-    bubbleSort(array, 10);
+    bubbleSort(array, 10); // sorting
     cout<<"\n\n";
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++)    // print data yang sudah disort
     {
         cout << array[i] << " ";
     }
