@@ -239,5 +239,6 @@ int main(){
     runtime(a40k, size40k);
     runtime(a50k, size50k);
     
+    getch();
     return 0;
 }
