@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 #include <iostream>
-#include <algorithm>
+// #include <algorithm>
 #include <list>
-#include <cmath>
-#include <chrono>
+// #include <cmath>
+// #include <chrono>
 using namespace std;
 
 
@@ -239,6 +239,5 @@ int main(){
     runtime(a40k, size40k);
     runtime(a50k, size50k);
     
-    getch();
     return 0;
 }
